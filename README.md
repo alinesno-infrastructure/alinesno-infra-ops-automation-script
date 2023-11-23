@@ -45,8 +45,9 @@ ops/
 ├── system/ （系统管理)
 ├── network/  (网络监控)
 ├── database/  (数据库管理)
-├── app/  (应用管理)
+├── application/  (应用管理)
 ├── security/  (安全合规)
 ├── automation/  (自动化)
 └── infrastructure/  (基础设施)
+└── templates/  (模板脚本)
 ```
