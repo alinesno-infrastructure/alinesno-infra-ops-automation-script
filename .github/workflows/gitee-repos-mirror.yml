@@ -10,12 +10,12 @@
 
 # env:
 #   TZ: Asia/Shanghai
-  
+
 # jobs:
 #   build:
 #     runs-on: ubuntu-20.04
 
-#     steps: 
+#     steps:
 #       - name: Mirror the Github organization repos to Gitee.
 #         # 使用 Yikun/hub-mirror-action 动作
 #         uses: Yikun/hub-mirror-action@master
@@ -33,7 +33,7 @@
 #           dst_token: ${{ secrets.GITEE_TOKEN }}
 #           # Gitee Token，存储在 GitHub 仓库的 Secrets 中
 
-#           account_type: org 
+#           account_type: org
 #           # 组织类型的仓库同步
 
 #           cache_path: /github/workspace/hub-mirror-cache

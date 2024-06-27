@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.alinesno.infra.common</groupId>
+        <artifactId>alinesno-infra-platform-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <packaging>pom</packaging>
+
+    <groupId>com.alinesno.infra.ops</groupId>
+    <artifactId>alinesno-infra-ops-logback-parent</artifactId>
+    <version>${revision}</version>
+
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <alinesno.infra.version>${revision}</alinesno.infra.version>
+
+        <!-- clickhouse配置 -->
+        <clickhouse.jdbc.version>0.4.6</clickhouse.jdbc.version>
+        <dynamic.datasource.version>3.5.2</dynamic.datasource.version>
+        <fastjson.version>2.0.48</fastjson.version>
+    </properties>
+
+    <modules>
+        <!-- 应用服务 -->
+        <module>alinesno-infra-ops-logback-facade</module>  <!-- 接口和引用 -->
+        <module>alinesno-infra-ops-logback-core</module>  <!-- 工程公共核心包 -->
+        <module>alinesno-infra-ops-logback-olap</module>  <!-- 基于clickhouse的olap数据分析-->
+        <module>alinesno-infra-ops-logback-domain</module>  <!-- 领域服务 -->
+        <module>alinesno-infra-ops-logback-adapter</module> <!-- 适配层 -->
+        <module>alinesno-infra-ops-logback-gateway</module>  <!-- 接口服务 -->
+        <module>alinesno-infra-ops-logback-client</module>  <!-- 对外引用 -->
+        <module>alinesno-infra-ops-logback-boot</module>  <!-- 启动服务 -->
+
+        <module>alinesno-infra-ops-logback-agent</module>  <!-- 客户端日志采集 -->
+
+        <!-- 前端服务
+        <module>alinesno-infra-ops-logback-ui</module>
+        -->
+
+        <!-- demo -->
+        <module>demo-logback</module>
+    </modules>
+
+    <!-- 集成 clickhouse 依赖配置 -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!--clickhouse-->
+            <dependency>
+                <groupId>com.clickhouse</groupId>
+                <artifactId>clickhouse-jdbc</artifactId>
+                <version>${clickhouse.jdbc.version}</version>
+            </dependency>
+
+            <!-- 多数据源支撑 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic.datasource.version}</version>
+            </dependency>
+
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>
+

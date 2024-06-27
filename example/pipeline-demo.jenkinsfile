@@ -1,0 +1,116 @@
+pipeline {
+    agent any
+
+    environment {
+    	// 构建参数
+        PROJECT_NAME = 'inspection-check-illegal-account'
+        PROJECT_DESC = '清理社区环境非法用户'
+        BUSINESS_TYPE = 'clearData'
+
+        // ansible-playbook配置
+       	INVENTORY_YML = "/hosts/hosts"
+       	ANSIBLE_PLAYBOOK = "/ansible/inspection-check-illegal-account.yml"
+
+        // 通知
+      	NOTICE = "dingtalk"
+       	DINGTALK_ROBOT = "alinesno-operation-dingtalk-robot"
+    }
+
+   	// 每22点执行巡检1次
+    triggers {
+        cron('H 22 * * *')
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '2', artifactNumToKeepStr: '7', daysToKeepStr: '5'))
+    }
+
+    stages {
+
+       stage('运行集成任务') {
+            steps {
+				sh label: '', script: '''
+					export ANSIBLE_CALLBACK_WHITELIST=json
+					export ANSIBLE_STDOUT_CALLBACK=json
+
+					echo '/** this is ansible result json **/' > ${WORKSPACE}/url_status.json
+
+					ansible-playbook \
+						-i ${WORKSPACE}${INVENTORY_YML} \
+						${WORKSPACE}${ANSIBLE_PLAYBOOK} >> ${WORKSPACE}/url_status.json
+
+					cat ${WORKSPACE}/url_status.json
+				'''
+            }
+       }
+
+       stage('解析结果报告') {
+            steps {
+				sh label: '', script: '''
+					export ANSIBLE_CALLBACK_WHITELIST=json
+					export ANSIBLE_STDOUT_CALLBACK=json
+
+					echo '/** this is ansible result json **/' > ${WORKSPACE}/url_status.json
+
+					ansible-playbook \
+						-i ${WORKSPACE}${INVENTORY_YML} \
+						${WORKSPACE}${ANSIBLE_PLAYBOOK} >> ${WORKSPACE}/url_status.json
+
+					cat ${WORKSPACE}/url_status.json
+				'''
+            }
+       }
+
+    }
+
+    // 发送结果通知
+    post {
+   		// 发送报告到巡检中心
+		always {
+			sh """
+				curl -v -X PUT 'http://xxxx' \
+					  -H 'User-Key: c2a1b34dbe8c1e81dfefe762cf17d7c789a30fc70554aff56ba57bfb85cb75d6' \
+					  -H 'Content-Type: multipart/form-data' \
+					  -F 'pluginFile=@"${WORKSPACE}/url_status.json"' \
+					  -F 'algorithm={"name":"${PROJECT_DESC}","runStatus":"${currentBuild.currentResult}","nameCode":"${PROJECT_NAME}","totalTime":"${currentBuild.durationString}","busType":"${BUSINESS_TYPE}"}'
+			"""
+		}
+        failure {
+            dingtalk (
+                robot: "${env.DINGTALK_ROBOT}",
+                type:'ACTION_CARD',
+                atAll: false,
+                title: "${PROJECT_DESC}失败：${env.JOB_NAME}",
+                text: [
+                    "### [${env.JOB_NAME}](${env.JOB_URL}) ",
+                    '---',
+                    "- 描述：${PROJECT_DESC}" ,
+                    "- 任务：[${currentBuild.displayName}](${env.BUILD_URL})",
+                    "- 巡检时间：${currentBuild.timeInMillis}" ,
+                    '- 状态：<font color=#EE0000 >失败</font>',
+                    "- 持续时间：${currentBuild.durationString}".split("and counting")[0],
+                    "- 执行人：${currentBuild.buildCauses.shortDescription}",
+                ]
+           )
+        }
+        success {
+            dingtalk (
+                robot: "${env.DINGTALK_ROBOT}",
+                type:'ACTION_CARD',
+                atAll: false,
+                title: "${PROJECT_DESC}成功：${env.JOB_NAME}",
+                text: [
+                    "### [${env.JOB_NAME}](${env.JOB_URL}) ",
+                    '---',
+                    "- 描述：${PROJECT_DESC}" ,
+                    "- 任务：[${currentBuild.displayName}](${env.BUILD_URL})",
+                    "- 巡检时间：${currentBuild.timeInMillis}" ,
+                    '- 状态：<font color=#005bd4 >成功</font>',
+                    "- 持续时间：${currentBuild.durationString}".split("and counting")[0],
+                    "- 执行人：${currentBuild.buildCauses.shortDescription}",
+                ]
+           )
+        }
+    }
+
+}
