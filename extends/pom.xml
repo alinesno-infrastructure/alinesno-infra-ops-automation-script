@@ -12,7 +12,7 @@
     <packaging>pom</packaging>
 
     <groupId>com.alinesno.infra.ops</groupId>
-    <artifactId>alinesno-infra-ops-logback-parent</artifactId>
+    <artifactId>extends</artifactId>
     <version>${revision}</version>
 
     <properties>
@@ -26,24 +26,9 @@
     </properties>
 
     <modules>
-        <!-- 应用服务 -->
-        <module>alinesno-infra-ops-logback-facade</module>  <!-- 接口和引用 -->
-        <module>alinesno-infra-ops-logback-core</module>  <!-- 工程公共核心包 -->
-        <module>alinesno-infra-ops-logback-olap</module>  <!-- 基于clickhouse的olap数据分析-->
-        <module>alinesno-infra-ops-logback-domain</module>  <!-- 领域服务 -->
-        <module>alinesno-infra-ops-logback-adapter</module> <!-- 适配层 -->
-        <module>alinesno-infra-ops-logback-gateway</module>  <!-- 接口服务 -->
-        <module>alinesno-infra-ops-logback-client</module>  <!-- 对外引用 -->
-        <module>alinesno-infra-ops-logback-boot</module>  <!-- 启动服务 -->
-
-        <module>alinesno-infra-ops-logback-agent</module>  <!-- 客户端日志采集 -->
-
-        <!-- 前端服务
-        <module>alinesno-infra-ops-logback-ui</module>
-        -->
-
-        <!-- demo -->
+        <!-- demo
         <module>demo-logback</module>
+        -->
     </modules>
 
     <!-- 集成 clickhouse 依赖配置 -->
