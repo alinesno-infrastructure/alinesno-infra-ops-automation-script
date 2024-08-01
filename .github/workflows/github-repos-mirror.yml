@@ -1,0 +1,31 @@
+# 同步 Person 仓库到 Person
+# 每天晚上 1 点自动触发同步操作
+
+name: Sync Person Repos To Person
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+      - cron: "0 20 * * *"
+     # 每天 UTC 时间 20 点触发，对应北京时间 4 点
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: SetUp Jdk17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '17'
+
+      - name: Run a multi-line script
+        run: |
+          echo 'echo hello world'
+          echo 'echo hello world2'
