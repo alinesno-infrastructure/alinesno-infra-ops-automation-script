@@ -56,7 +56,6 @@ jobs:
             "alinesno-infra-data-report"
             "alinesno-infra-ops-container"
             "alinesno-infra-ui"
-            "alinesno-infra-plat-install"
             "alinesno-infra-common"
             "alinesno-infra-base-sensitive"
             "alinesno-infra-base-im"
