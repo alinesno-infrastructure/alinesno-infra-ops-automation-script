@@ -45,7 +45,57 @@ jobs:
           
           export JAVA_TOOL_OPTIONS="-Dspring.datasource.url=${DB_POSTGRESQL_URL} -Dspring.datasource.username=${DB_POSTGRESQL_USERNAME} -Dspring.datasource.password=${DB_POSTGRESQL_PASSWORD}"
           
-          java -jar github-repos-mirror.jar
+          # 定义仓库名称数组
+          repositoryNames=(
+            "alinesno-infra-base-platform"
+            "alinesno-infra-book-press"
+            "alinesno-infra-smart-ocr"
+            "alinesno-infra-base-starter"
+            "alinesno-infra-data-fastapi"
+            "alinesno-infra-base-pay"
+            "alinesno-infra-data-report"
+            "alinesno-infra-ops-container"
+            "alinesno-infra-ui"
+            "alinesno-infra-plat-install"
+            "alinesno-infra-common"
+            "alinesno-infra-base-sensitive"
+            "alinesno-infra-base-im"
+            "alinesno-infra-base-authority"
+            "alinesno-infra-smart-assistant-plugin"
+            "alinesno-infra-data-stream"
+            "alinesno-infra-data-mdm"
+            "alinesno-infra-bus-recommend"
+            "alinesno-infra-ops-scheduler"
+            "alinesno-infra-base-cms"
+            "alinesno-infra-smart-nlp"
+            "alinesno-infra-ops-automation-script"
+            "alinesno-infra-ops-docker"
+            "alinesno-infra-base-storage"
+            "alinesno-infra-plat-security"
+            "alinesno-infra-data-pipeline"
+            "alinesno-infra-data-assets"
+            "alinesno-infra-base-search"
+            "alinesno-infrastructure-book-press"
+            "alinesno-infra-base-config"
+            "alinesno-infra-base-message"
+            "alinesno-infra-plat-console"
+            "alinesno-infra-base-starter-plugin"
+            "alinesno-infra-smart-detection"
+            "alinesno-infra-bus-profiling"
+            "alinesno-infra-platform-press"
+            "alinesno-infra-data-integration"
+            "alinesno-infra-data-dolphinscheduler"
+            "alinesno-infra-base-gateway"
+            "alinesno-infra-smart-brain"
+            "alinesno-infra-ops-watcher"
+            "alinesno-infra-ops-logback"
+          )
+          
+          # 遍历数组中的每一个仓库名称
+          for repoName in "${repositoryNames[@]}"; do
+            # 执行Java程序并传递仓库名称
+            java -jar github-repos-mirror.jar "$repoName"
+          done
 
       - name: Send Message To Platform
         run: |
