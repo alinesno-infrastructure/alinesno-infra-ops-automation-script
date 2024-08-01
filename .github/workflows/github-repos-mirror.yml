@@ -27,5 +27,26 @@ jobs:
 
       - name: Run a multi-line script
         run: |
-          echo 'echo hello world'
-          echo 'echo hello world2'
+          
+          # git sync
+          export ALINESNO_QIWEN_API_KEY=${{ secrets.ALINESNO_QIWEN_API_KEY }}
+          
+          export ALINESNO_SOURCE_GIT_USERNAME=${{ secrets.ALINESNO_SOURCE_GIT_USERNAME }}
+          export ALINESNO_SOURCE_GIT_ACCESS_TOKEN=${{ secrets.ALINESNO_SOURCE_GIT_ACCESS_TOKEN }}
+          
+          export ALINESNO_TARGET_GIT_ACCESS_TOKEN=${{ secrets.ALINESNO_TARGET_GIT_ACCESS_TOKEN }}
+          export ALINESNO_TARGET_GIT_USERNAME=${{ secrets.ALINESNO_TARGET_GIT_USERNAME }}
+          
+          export DB_POSTGRESQL_URL=${{ secrets.DEV_DB_POSTGRESQL_URL }}
+          export DB_POSTGRESQL_USERNAME=${{ secrets.DEV_DB_POSTGRESQL_USERNAME }}
+          export DB_POSTGRESQL_PASSWORD=${{ secrets.DEV_DB_POSTGRESQL_PASSWORD }}
+
+          wget ${{ secrets.UDF_SYNC_GIT_REPOSITORY_DOWNLOAD_URL }} -O github-repos-mirror.jar
+          
+          export JAVA_TOOL_OPTIONS="-Dspring.datasource.url=${DB_POSTGRESQL_URL} -Dspring.datasource.username=${DB_POSTGRESQL_USERNAME} -Dspring.datasource.password=${DB_POSTGRESQL_PASSWORD}"
+          
+          java -jar github-repos-mirror.jar
+
+      - name: Send Message To Platform
+        run: |
+          echo "Send Message To Platform ..."
