@@ -51,7 +51,6 @@ jobs:
             "alinesno-infra-book-press"
             "alinesno-infra-smart-ocr"
             "alinesno-infra-base-starter"
-            "alinesno-infra-data-fastapi"
             "alinesno-infra-base-pay"
             "alinesno-infra-data-report"
             "alinesno-infra-ops-container"
