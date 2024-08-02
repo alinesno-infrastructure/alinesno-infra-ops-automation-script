@@ -1,15 +1,15 @@
 # 同步 Person 仓库到 Person
 # 每天晚上 1 点自动触发同步操作
 
-name: Sync Person Repos To Person
+name: Sync Person Repos To Github
 
 on:
   push:
     branches:
       - main
   schedule:
-      - cron: "0 20 * * *"
-     # 每天 UTC 时间 20 点触发，对应北京时间 4 点
+      - cron: "0 16 * * *"
+     # 每天 UTC 时间 20 点触发，对应北京时间 0 点
 
 env:
   TZ: Asia/Shanghai
@@ -92,8 +92,13 @@ jobs:
           
           # 遍历数组中的每一个仓库名称
           for repoName in "${repositoryNames[@]}"; do
+            echo "同步仓库 ${repoName} >>>>>>>>>>>>>>>>>>>>>>>>> start"
+          
             # 执行Java程序并传递仓库名称
             java -jar github-repos-mirror.jar "$repoName"
+            echo "Send Message To Platform ..."
+          
+            echo "同步仓库 ${repoName} >>>>>>>>>>>>>>>>>>>>>>>>> end"
           done
 
       - name: Send Message To Platform
