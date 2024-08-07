@@ -8,9 +8,7 @@ on:
     branches:
       - main
   schedule:
-     # - cron: "0 16 * * *"
-      - cron: "* * * * *"  # 每分钟执行一次 
-     # 每天 UTC 时间 20 点触发，对应北京时间 0 点
+    - cron: '0 * * * *'  # 每个小时的第 0 分钟执行
 
 env:
   TZ: Asia/Shanghai
