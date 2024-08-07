@@ -47,7 +47,7 @@ jobs:
           
           # 定义仓库名称数组
           repositoryNames=( 
-            "alinesno-infra-smart-assistant-plugin" 
+            "alinesno-infra-ops-automation-script" 
           )
           
           # 遍历数组中的每一个仓库名称
