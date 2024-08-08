@@ -36,6 +36,12 @@
         <module>alinesno-tool-git-backup</module> <!-- git备份 -->
         <module>alinesno-tool-git-scan</module> <!-- git扫描 -->
 
+        <!-- inspection检测 -->
+        <module>alinesno-tool-inspection-kubernetes</module>
+        <module>alinesno-tool-inspection-mysql</module>
+        <module>alinesno-tool-inspection-nginx</module>
+        <module>alinesno-tool-inspection-platform</module>
+
         <!-- 短信发送 -->
         <module>alinesno-tool-im-sender</module>
 
