@@ -6,3 +6,19 @@ logging:
  level:
    root: info
    com.alinesno.infra.tool.backup.db: debug
+
+# Database configuration
+alinesno:
+  db:
+    name: demoDb # 数据库名称
+    url: jdbc:mysql://localhost:3306/demoDb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai # 数据库连接地址
+    user: root  # 数据库用户名
+    pass: admin # 数据库密码
+    backupDir: /data/backup # 备份文件保存目录
+
+  # Qiniu storage configuration
+  qiniu:
+    accessKey: ak # 七牛云密钥
+    secretKey: sk  # 七牛云密钥
+    bucketName: bk  # 存储空间名称
+    folderPrefix: fp # 文件夹前缀
