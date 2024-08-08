@@ -18,6 +18,8 @@ import org.apache.commons.io.FileUtils;
 @Slf4j
 public class DatabaseBackup {
 
+    public static final String BACKUP_LABEL = "_backup_" ;
+
     @SneakyThrows
     public static String backupDb(
                                 String dbName ,
@@ -31,7 +33,7 @@ public class DatabaseBackup {
         try (Connection conn = DriverManager.getConnection(dbUrl, user, pass)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
             Date now = new Date();
-            String backupFileName = dbName+ "_backup_" + sdf.format(now) + ".zip";
+            String backupFileName = dbName+ BACKUP_LABEL + sdf.format(now) + ".zip";
 
             // 获取指定数据库中的所有表的列表
             ResultSet tables = conn.getMetaData().getTables(null, null, "%", new String[]{"TABLE"});
