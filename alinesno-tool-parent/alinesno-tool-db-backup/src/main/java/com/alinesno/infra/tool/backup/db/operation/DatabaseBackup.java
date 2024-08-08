@@ -6,17 +6,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import lombok.extern.slf4j.Slf4j;
 
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+
+/**
+ * 数据库备份
+ *
+ */
 @Slf4j
 public class DatabaseBackup {
 
-    public static void backupDb(
+    @SneakyThrows
+    public static String backupDb(
                                 String dbName ,
                                 String dbUrl ,
                                 String user ,
                                 String pass ,
                                 String backupDir) {
+
+        FileUtils.forceMkdir(new File(backupDir));
 
         try (Connection conn = DriverManager.getConnection(dbUrl, user, pass)) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
@@ -36,10 +46,6 @@ public class DatabaseBackup {
 
                 // 检查表是否属于指定的数据库
                 if (tableCatalog.equals(dbName)) {
-
-                    System.out.println("Processing table: " + tableName);
-                    System.out.println("Table Catalog: " + tableCatalog);
-
                     // 创建 SQL 文件
                     String sqlFileName = tableName + ".sql";
                     createSqlBackupFile(sqlFileName, tableName, conn, zipOut);
@@ -49,8 +55,10 @@ public class DatabaseBackup {
             tables.close();
             zipOut.close();
 
+            return backupDir + File.separator + backupFileName ;
+
         } catch (SQLException | IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
