@@ -4,8 +4,10 @@ name: Alinesno Tool To Release
 
 on:
   push:
-    - paths:
-        - 'alinesno-tool-parent/**'
+    branches:
+      - main  # 或者其他分支名
+    paths:
+      - 'alinesno-tool-parent/**'  # 替换为你的目标目录
 
 env:
   TZ: Asia/Shanghai
