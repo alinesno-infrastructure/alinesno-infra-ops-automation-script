@@ -1,8 +1,8 @@
 spring:
-    application:
-        name: alinesno-tool-db-backup
+ application:
+   name: alinesno-tool-db-backup
 
 logging:
-    level:
-        root: info
-        com.alinesno.infra.tool.backup.db: debug
+ level:
+   root: info
+   com.alinesno.infra.tool.backup.db: debug
