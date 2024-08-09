@@ -6,3 +6,5 @@
 - alinesno-tool-db-operation：数据库操作
 - alinesno-tool-im-sender：消息发送
 - alinesno-tool-qiniu-upload：七牛云上传
+- alinesno-tool-git-clone: git仓库克隆
+- alinesno-tool-git-sync: git仓库同步备份
