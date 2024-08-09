@@ -138,9 +138,11 @@ jobs:
           echo '  </activeProfiles>' >> nexus-config.xml
           echo '</settings>' >> nexus-config.xml
 
+          mv nexus-config.xml /tmp/nexus-config.xml
+
       - name: Build Package and Deploy to Nexus
         run: | 
-          mvn clean package deploy -f ${{ env.PROJECT_NAME }}/pom.xml  -s nexus-config.xml
+          mvn clean package deploy -f ${{ env.PROJECT_NAME }}/pom.xml  -s /tmp/nexus-config.xml
 
       - name: Upload Db Backup to release
         uses: JasonEtco/upload-to-release@master
