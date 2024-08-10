@@ -147,15 +147,24 @@ jobs:
       - name: Upload Db Backup to release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: alinesno-tool-db-backup-${{ env.PRO_VERSION }}.jar application/octet-stream
+          args: ${{ env.PROJECT_NAME  }}/alinesno-tool-db-backup/target/alinesno-tool-db-backup-${{ env.PRO_VERSION }}.jar application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Qiniu Upload to release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: alinesno-tool-qiniu-upload-${{ env.PRO_VERSION }}.jar application/octet-stream
+          args: ${{ env.PROJECT_NAME  }}/alinesno-tool-qiniu-upload/target/alinesno-tool-qiniu-upload-${{ env.PRO_VERSION }}.jar application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get AIP Sync Project
+        run: |
+          wget ${{ secrets.UDF_SYNC_GIT_REPOSITORY_DOWNLOAD_URL }} -O github-repos-mirror-${{ env.PRO_VERSION }}.jar
 
+      - name: Upload Qiniu Upload to release
+        uses: JasonEtco/upload-to-release@master
+        with:
+          args: github-repos-mirror-${{ env.PRO_VERSION }}.jar application/octet-stream
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
