@@ -13,7 +13,7 @@
 
 	<groupId>com.linesno.training.business.run</groupId>
 	<artifactId>alinesno-tool-qiniu-upload</artifactId>
-	<version>1.0.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<properties>
