@@ -17,31 +17,31 @@ public class DatabaseBackup {
     private static final String USER = "your_username";
     private static final String PASS = "your_password";
 
-    public static void main(String[] args) {
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-            Date now = new Date();
-            String backupFileName = "backup_" + sdf.format(now) + ".zip";
-
-            // 获取所有表的列表
-            ResultSet tables = conn.getMetaData().getTables(null, null, "%", new String[]{"TABLE"});
-            ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(backupFileName));
-
-            while (tables.next()) {
-                String tableName = tables.getString("TABLE_NAME");
-
-                // 创建 SQL 文件
-                String sqlFileName = tableName + "_" + sdf.format(now) + ".sql";
-                createSqlBackupFile(sqlFileName, tableName, conn, zipOut);
-            }
-
-            tables.close();
-            zipOut.close();
-
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)) {
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+//            Date now = new Date();
+//            String backupFileName = "backup_" + sdf.format(now) + ".zip";
+//
+//            // 获取所有表的列表
+//            ResultSet tables = conn.getMetaData().getTables(null, null, "%", new String[]{"TABLE"});
+//            ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(backupFileName));
+//
+//            while (tables.next()) {
+//                String tableName = tables.getString("TABLE_NAME");
+//
+//                // 创建 SQL 文件
+//                String sqlFileName = tableName + "_" + sdf.format(now) + ".sql";
+//                createSqlBackupFile(sqlFileName, tableName, conn, zipOut);
+//            }
+//
+//            tables.close();
+//            zipOut.close();
+//
+//        } catch (SQLException | IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private static void createSqlBackupFile(String sqlFileName, String tableName, Connection conn, ZipOutputStream zipOut) throws SQLException, IOException {
         // 构建 SQL 查询语句
