@@ -142,7 +142,7 @@ jobs:
 
       - name: Build Package and Deploy to Nexus
         run: | 
-          mvn clean package deploy -f ${{ env.PROJECT_NAME }}/pom.xml  -s /tmp/nexus-config.xml
+          mvn clean package -f ${{ env.PROJECT_NAME }}/pom.xml  -s /tmp/nexus-config.xml
 
       - name: Upload Db Backup to release
         uses: JasonEtco/upload-to-release@master
