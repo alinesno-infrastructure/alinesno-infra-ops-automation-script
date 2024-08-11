@@ -1,0 +1,3 @@
+spring:
+    application:
+        name: com.alinesno.infra.ops.automation.extends.backup
