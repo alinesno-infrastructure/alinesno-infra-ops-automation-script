@@ -145,10 +145,12 @@ jobs:
           mvn clean package -f ${{ env.PROJECT_NAME }}/pom.xml  -s /tmp/nexus-config.xml
           echo "当前目录: $(pwd)"
 
+
       - name: Upload Db Backup to release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: ${{ env.PROJECT_NAME  }}/alinesno-tool-db-backup/target/alinesno-tool-db-backup-${{ env.PRO_VERSION }}.jar application/octet-stream
+          # args: ${{ env.PROJECT_NAME  }}/alinesno-tool-db-backup/target/alinesno-tool-db-backup-${{ env.PRO_VERSION }}.jar application/octet-stream
+          args: /home/runner/work/alinesno-infra-ops-automation-script/alinesno-infra-ops-automation-script/${{ env.PROJECT_NAME  }}/alinesno-tool-db-backup/target/alinesno-tool-db-backup-${{ env.PRO_VERSION }}.jar application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
