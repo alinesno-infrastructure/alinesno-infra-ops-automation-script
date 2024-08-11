@@ -145,28 +145,28 @@ jobs:
           mvn clean package -f ${{ env.PROJECT_NAME }}/pom.xml  -s /tmp/nexus-config.xml
           echo "Current Dir: $(pwd)"
 
-      - name: Upload Db Backup to release
-        uses: JasonEtco/upload-to-release@master
-        with:
-          # args: ${{ env.PROJECT_NAME  }}/alinesno-tool-db-backup/target/alinesno-tool-db-backup-${{ env.PRO_VERSION }}.jar application/octet-stream
-          args: /home/runner/work/alinesno-infra-ops-automation-script/alinesno-tool-parent/alinesno-tool-db-backup/target/alinesno-tool-db-backup-0.0.1-SNAPSHOT.jar application/octet-stream
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Upload Db Backup to release
+        # uses: JasonEtco/upload-to-release@master
+        # with:
+          # # args: ${{ env.PROJECT_NAME  }}/alinesno-tool-db-backup/target/alinesno-tool-db-backup-${{ env.PRO_VERSION }}.jar application/octet-stream
+          # args: /home/runner/work/alinesno-infra-ops-automation-script/alinesno-tool-parent/alinesno-tool-db-backup/target/alinesno-tool-db-backup-0.0.1-SNAPSHOT.jar application/octet-stream
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Qiniu Upload to release
-        uses: JasonEtco/upload-to-release@master
-        with:
-          args: ${{ env.PROJECT_NAME  }}/alinesno-tool-qiniu-upload/target/alinesno-tool-qiniu-upload-${{ env.PRO_VERSION }}.jar application/octet-stream
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Upload Qiniu Upload to release
+        # uses: JasonEtco/upload-to-release@master
+        # with:
+          # args: ${{ env.PROJECT_NAME  }}/alinesno-tool-qiniu-upload/target/alinesno-tool-qiniu-upload-${{ env.PRO_VERSION }}.jar application/octet-stream
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get AIP Sync Project
-        run: |
-          wget ${{ secrets.UDF_SYNC_GIT_REPOSITORY_DOWNLOAD_URL }} -O github-repos-mirror-${{ env.PRO_VERSION }}.jar
+      # - name: Get AIP Sync Project
+        # run: |
+          # wget ${{ secrets.UDF_SYNC_GIT_REPOSITORY_DOWNLOAD_URL }} -O github-repos-mirror-${{ env.PRO_VERSION }}.jar
 
-      - name: Upload Github-Repos-Mirror Upload to release
-        uses: JasonEtco/upload-to-release@master
-        with:
-          args: github-repos-mirror-${{ env.PRO_VERSION }}.jar application/octet-stream
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Upload Github-Repos-Mirror Upload to release
+        # uses: JasonEtco/upload-to-release@master
+        # with:
+          # args: github-repos-mirror-${{ env.PRO_VERSION }}.jar application/octet-stream
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
