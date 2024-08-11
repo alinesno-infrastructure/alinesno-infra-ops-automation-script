@@ -44,7 +44,7 @@ jobs:
         run: |
           echo '<?xml version="1.0" encoding="UTF-8"?>' > nexus-config.xml
           echo '<settings>' >> nexus-config.xml
-          
+
           echo '  <servers>' >> nexus-config.xml
           echo '    <server>' >> nexus-config.xml
           echo '      <id>rdc-releases</id>' >> nexus-config.xml
@@ -57,7 +57,7 @@ jobs:
           echo '      <password>${{ secrets.NEXUS_PASSWORD }}</password>' >> nexus-config.xml
           echo '    </server>' >> nexus-config.xml
           echo '  </servers>' >> nexus-config.xml
-          
+
           echo '  <mirrors>' >> nexus-config.xml
           echo '    <mirror>' >> nexus-config.xml
           echo '      <id>mirror</id>' >> nexus-config.xml
@@ -76,7 +76,7 @@ jobs:
           echo '      <url>${{ secrets.NEXUS_REPOSITORY_SNAPSHOT }}</url>' >> nexus-config.xml
           echo '    </mirror>' >> nexus-config.xml
           echo '  </mirrors>' >> nexus-config.xml
-          
+
           echo '  <profiles>' >> nexus-config.xml
           echo '    <profile>' >> nexus-config.xml
           echo '      <id>rdc</id>' >> nexus-config.xml
@@ -132,7 +132,7 @@ jobs:
           echo '      </repositories> ' >> nexus-config.xml
           echo '    </profile>' >> nexus-config.xml
           echo '  </profiles>' >> nexus-config.xml
-          
+
           echo '  <activeProfiles>' >> nexus-config.xml
           echo '    <activeProfile>rdc</activeProfile>' >> nexus-config.xml
           echo '  </activeProfiles>' >> nexus-config.xml
@@ -141,19 +141,21 @@ jobs:
           mv nexus-config.xml /tmp/nexus-config.xml
 
       - name: Build Package and Deploy to Nexus
-        run: | 
+        run: |
           mvn clean package -f ${{ env.PROJECT_NAME }}/pom.xml  -s /tmp/nexus-config.xml
 
       - name: Upload Db Backup to release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: alinesno-tool-db-backup-${{ env.PROJECT_NAME }}.jar application/octet-stream
+          args: alinesno-tool-db-backup-${{ env.PRO_VERSION }}.jar application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Qiniu Upload to release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: alinesno-tool-db-backup-${{ env.PROJECT_NAME }}.jar application/octet-stream
+          args: alinesno-tool-qiniu-upload-${{ env.PRO_VERSION }}.jar application/octet-stream
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
