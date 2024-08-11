@@ -1,3 +1,7 @@
+# 同步 Github 仓库到 Gitee
+# 每天晚上 1 点自动触发同步操作
+name: Alinesno Tool To Release Demo
+
 on:
   push:
     branches:
