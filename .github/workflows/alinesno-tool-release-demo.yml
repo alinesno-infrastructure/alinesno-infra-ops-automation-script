@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - main  # 或者其他分支名
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # steps for building assets
+      - run: echo "REPLACE ME!" > assets.txt
+
+      - name: Create a Release
+        id: create_release
+        uses: shogo82148/actions-create-release@v1
+
+      - name: Upload Assets
+        uses: shogo82148/actions-upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: assets.txt
