@@ -1,7 +1,7 @@
 # 同步 Person 仓库到 Person
 # 每天晚上 1 点自动触发同步操作
 
-name: Sync Person Repos To Github
+name: Sync Smart Repos To Github
 
 on:
   push:
