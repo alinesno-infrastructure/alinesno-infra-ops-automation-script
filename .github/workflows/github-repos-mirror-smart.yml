@@ -49,8 +49,7 @@ jobs:
           repositoryNames=(  
             "alinesno-infra-smart-ocr"  
             "alinesno-infra-smart-assistant-plugin"  
-            "alinesno-infra-smart-nlp"  
-            "alinesno-infra-smart-inference"
+            "alinesno-infra-smart-nlp"   
             "alinesno-infra-smart-detection"  
             "alinesno-infra-smart-brain" 
           )
