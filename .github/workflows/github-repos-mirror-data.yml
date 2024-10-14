@@ -53,6 +53,7 @@ jobs:
             "alinesno-infra-data-assets" 
             "alinesno-infra-data-integration"
             "alinesno-infra-data-scheduler" 
+            "alinesno-infra-data-scheduler-plugin"
           )
           
           # 遍历数组中的每一个仓库名称
