@@ -8,7 +8,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 16 * * *"
+      - cron: "0 16 * * *"
+     # 每天 UTC 时间 20 点触发，对应北京时间 0 点
 
 env:
   TZ: Asia/Shanghai
