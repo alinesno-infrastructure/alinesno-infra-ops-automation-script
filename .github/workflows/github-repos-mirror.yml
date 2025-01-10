@@ -59,6 +59,7 @@ jobs:
             "alinesno-infra-bus-profiling"
             "alinesno-infra-platform-press"
             "alinesno-infra-ops-watcher"
+            "alinesno-infra-plat-install"
             "alinesno-infra-ops-logback"
           )
 
