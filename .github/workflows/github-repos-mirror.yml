@@ -59,8 +59,7 @@ jobs:
             "alinesno-infra-bus-profiling"
             "alinesno-infra-platform-press"
             "alinesno-infra-ops-watcher"
-            "alinesno-infra-plat-install"
-            "alinesno-infra-ops-logback"
+            "alinesno-infra-plat-install" 
           )
 
           # 遍历数组中的每一个仓库名称
