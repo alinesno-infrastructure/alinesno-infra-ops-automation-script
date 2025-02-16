@@ -47,8 +47,7 @@ jobs:
           
           # 定义仓库名称数组
           repositoryNames=(  
-            "alinesno-infra-smart-ocr"  
-            "alinesno-infra-smart-assistant-plugin"  
+            "alinesno-infra-smart-ocr"   
             "alinesno-infra-smart-nlp"   
             "alinesno-infra-smart-detection"  
             "alinesno-infra-smart-brain" 
