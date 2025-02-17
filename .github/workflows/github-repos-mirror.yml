@@ -48,16 +48,15 @@ jobs:
           # 定义仓库名称数组
           repositoryNames=(
             "alinesno-infra-book-press"
-            "alinesno-infra-ops-container"
-            "alinesno-infra-ui"
-            "alinesno-infra-common" 
-            "alinesno-infra-ops-docker"
-            "alinesno-infra-plat-security"
             "alinesno-infrastructure-book-press"
-            "alinesno-infra-plat-console" 
             "alinesno-infra-platform-press"
-            "alinesno-infra-ops-watcher"
-            "alinesno-infra-plat-install" 
+ 
+            "alinesno-infra-common"  
+            "alinesno-infra-plat-security" 
+            "alinesno-infra-plat-console" 
+            
+            "alinesno-infra-ops-watcher" 
+            "alinesno-infra-ops-container"
           )
 
           # 遍历数组中的每一个仓库名称
