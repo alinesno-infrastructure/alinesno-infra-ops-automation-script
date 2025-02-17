@@ -46,18 +46,12 @@ jobs:
           export JAVA_TOOL_OPTIONS="-Dspring.datasource.url=${DB_POSTGRESQL_URL} -Dspring.datasource.username=${DB_POSTGRESQL_USERNAME} -Dspring.datasource.password=${DB_POSTGRESQL_PASSWORD}"
 
           # 定义仓库名称数组
-          repositoryNames=(
-            "alinesno-infra-base-platform"
-            "alinesno-infra-base-starter"
-            "alinesno-infra-base-pay"
+          repositoryNames=( 
+            "alinesno-infra-base-starter" 
             "alinesno-infra-base-sensitive" 
             "alinesno-infra-base-authority"
-            "alinesno-infra-base-cms"
-            "alinesno-infra-base-storage"
-            "alinesno-infra-base-search"
-            "alinesno-infra-base-config"
-            "alinesno-infra-base-message"
-            "alinesno-infra-base-starter-plugin"
+            "alinesno-infra-base-cms"  
+            "alinesno-infra-base-config" 
             "alinesno-infra-base-gateway"
           )
 
