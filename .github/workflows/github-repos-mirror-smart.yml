@@ -50,6 +50,7 @@ jobs:
             "alinesno-infra-smart-ocr"   
             "alinesno-infra-smart-nlp"   
             "alinesno-infra-smart-detection"  
+            "alinesno-infra-smart-model-adapater"
             "alinesno-infra-smart-brain" 
           )
           
