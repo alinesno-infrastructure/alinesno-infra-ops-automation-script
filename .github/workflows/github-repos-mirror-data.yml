@@ -16,7 +16,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04-large
+    runs-on: ubuntu-latest
 
     steps:
       - name: SetUp Jdk17
