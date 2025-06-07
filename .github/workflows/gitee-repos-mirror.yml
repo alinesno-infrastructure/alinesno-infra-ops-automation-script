@@ -1,46 +1,46 @@
-# 同步 Github 仓库到 Gitee
-# 每天晚上 1 点自动触发同步操作
+# # 同步 Github 仓库到 Gitee
+# # 每天晚上 1 点自动触发同步操作
 
-name: Sync Github Repos To Gitee
+# name: Sync Github Repos To Gitee
 
-on:
-  schedule:
-      - cron: "0 17 * * 0"
-     # 每天 UTC 时间 20 点触发，对应北京时间 4 点
+# on:
+#   schedule:
+#       - cron: "0 17 * * 0"
+#      # 每天 UTC 时间 20 点触发，对应北京时间 4 点
 
-env:
-  TZ: Asia/Shanghai
+# env:
+#   TZ: Asia/Shanghai
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Mirror the Github organization repos to Gitee.
-        # 使用 Yikun/hub-mirror-action 动作
-        uses: Yikun/hub-mirror-action@master
+#     steps:
+#       - name: Mirror the Github organization repos to Gitee.
+#         # 使用 Yikun/hub-mirror-action 动作
+#         uses: Yikun/hub-mirror-action@master
 
-        with:
-          src: github/alinesno-infrastructure
-          # 源仓库地址：github/alinesno-infrastructure
+#         with:
+#           src: github/alinesno-infrastructure
+#           # 源仓库地址：github/alinesno-infrastructure
 
-          dst: gitee/alinesno-infrastructure
-          # 目标仓库地址：gitee/alinesno-infrastructure
+#           dst: gitee/alinesno-infrastructure
+#           # 目标仓库地址：gitee/alinesno-infrastructure
 
-          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-          # Gitee 私钥，存储在 GitHub 仓库的 Secrets 中
+#           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+#           # Gitee 私钥，存储在 GitHub 仓库的 Secrets 中
 
-          dst_token: ${{ secrets.GITEE_TOKEN }}
-          # Gitee Token，存储在 GitHub 仓库的 Secrets 中
+#           dst_token: ${{ secrets.GITEE_TOKEN }}
+#           # Gitee Token，存储在 GitHub 仓库的 Secrets 中
 
-          account_type: org
-          # 组织类型的仓库同步
+#           account_type: org
+#           # 组织类型的仓库同步
 
-          cache_path: /github/workspace/hub-mirror-cache
-          # 缓存路径
+#           cache_path: /github/workspace/hub-mirror-cache
+#           # 缓存路径
 
-          force_update: true
-          # 强制更新
+#           force_update: true
+#           # 强制更新
 
-          debug: true
-          # 调试模式
+#           debug: true
+#           # 调试模式
