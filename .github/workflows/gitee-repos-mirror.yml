@@ -4,6 +4,9 @@
 name: Sync Github Repos To Gitee
 
 on:
+  push:
+    branches:
+      - main
   schedule:
       - cron: "0 17 * * 0"
      # 每天 UTC 时间 20 点触发，对应北京时间 4 点
