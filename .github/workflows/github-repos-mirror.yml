@@ -52,8 +52,7 @@ jobs:
             "alinesno-infra-platform-press"
  
             "alinesno-infra-common"  
-            "alinesno-infra-plat-security" 
-            "alinesno-infra-plat-console" 
+            "alinesno-infra-plat-security"  
             
             "alinesno-infra-ops-watcher" 
             "alinesno-infra-ops-container"
