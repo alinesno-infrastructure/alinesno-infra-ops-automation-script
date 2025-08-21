@@ -51,7 +51,7 @@ jobs:
             "alinesno-infra-smart-nlp"   
             "alinesno-infra-smart-detection"  
             "alinesno-infra-smart-model-adapater"
-            "alinesno-infra-smart-brain" 
+            # "alinesno-infra-smart-brain" 
           )
           
           # 遍历数组中的每一个仓库名称
