@@ -48,6 +48,7 @@ jobs:
           # 定义仓库名称数组
           repositoryNames=( 
             "alinesno-infra-data-stream"
+            "alinesno-infra-data-lake"
             "alinesno-infra-data-mdm" 
             "alinesno-infra-data-pipeline"
             "alinesno-infra-data-assets" 
