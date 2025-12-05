@@ -50,7 +50,7 @@ jobs:
             "alinesno-infra-data-stream"
             "alinesno-infra-data-lake"
             "alinesno-infra-data-mdm" 
-            "alinesno-infra-data-pipeline"
+            "alinesno-infra-data-pipeline" 
             "alinesno-infra-data-assets" 
             "alinesno-infra-data-integration"
             "alinesno-infra-data-scheduler"   
